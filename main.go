@@ -19,12 +19,16 @@ func main() {
 func startServer() {
 	r := gin.Default()
 
-	// Number server
 	r.GET("/generate", generate)
 	r.POST("/seed", changeSeed)
 	r.GET("/seed", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"seed": seed})
 	})
+
+	r.POST("/contact", newContact)
+	r.GET("/contact", getContact)
+	r.DELETE("/contact", deleteContact)
+	r.PATCH("/contact", updateContact)
 
 	r.Run()
 }
