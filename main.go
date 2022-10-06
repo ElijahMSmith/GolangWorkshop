@@ -19,8 +19,6 @@ func main() {
 func startServer() {
 	r := gin.Default()
 
-	
-
 	// Number server
 	r.GET("/generate", generate)
 	r.POST("/seed", changeSeed)

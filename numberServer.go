@@ -41,10 +41,10 @@ func generate(c *gin.Context) {
 }
 
 func changeSeed(c *gin.Context) {
-	seedStr := c.Param("seed")
+	seedStr := c.PostForm("newSeed")
 	if seedStr == "" {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Seed parameter not specified",
+			"error": "newSeed parameter not specified",
 		})
 		return
 	}
@@ -52,7 +52,7 @@ func changeSeed(c *gin.Context) {
 	newSeed, err := strconv.Atoi(seedStr)
 	if err != nil || seed < 0 {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid seed parameter (must be integer > 0)",
+			"error": "Invalid newSeed parameter (must be integer > 0)",
 		})
 		return
 	}
